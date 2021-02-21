@@ -52,6 +52,24 @@ add_filter('script_loader_tag', 'wordpack_defer_scripts', 10, 2);
 
 /**
  * 
+ * Modularize scripts
+ */
+function wordpack_module_scripts($tag, $handle) {
+  if ( is_user_logged_in() ) return $tag;
+  $exclude = [];
+  if(!in_array($handle, $exclude)){
+    $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
+  }
+  return $tag;
+
+}
+add_filter('script_loader_tag', 'wordpack_module_scripts', 10, 2);
+
+
+
+
+/**
+ * 
  * Async styles
  */
 function wordpack_async_styles($tag, $handle) {
@@ -72,27 +90,28 @@ add_filter('style_loader_tag', 'wordpack_async_styles', 10, 2);
 
 function wordpack_load_style($style_name){
   $css_file = get_template_directory() . "/assets/css/" . $style_name. ".css";
-  $hot_file = get_template_directory() . "/assets/hot";
+  // $hot_file = get_template_directory() . "/assets/hot";
 
-  if(file_exists($hot_file)){
+  // if(file_exists($hot_file)){
     // load css from hmr servers
     wp_enqueue_style(
       $style_name,
-      'http://localhost:8080'. "/css/".$style_name.'.css',
+      // 'http://localhost:3000'. "/assets/sass/".$style_name.'.css',
+      'http://localhost:3000'. "/assets/css/".$style_name.'.css',
       array(),
       null
     );
-  }else{
-    // load css file from assets
-    $css_file_url = get_template_directory_uri() . "/assets/css/" . $style_name. ".css";
-    $last_time_modified  = date("ymd-Gis", filemtime($css_file));
-    wp_enqueue_style(
-      $style_name,
-      $css_file_url,
-      array(),
-      $last_time_modified
-    );
-  }
+  // }else{
+  //   // load css file from assets
+  //   $css_file_url = get_template_directory_uri() . "/assets/css/" . $style_name. ".css";
+  //   $last_time_modified  = date("ymd-Gis", filemtime($css_file));
+  //   wp_enqueue_style(
+  //     $style_name,
+  //     $css_file_url,
+  //     array(),
+  //     $last_time_modified
+  //   );
+  // }
 
 }
 
@@ -102,43 +121,43 @@ function wordpack_load_style($style_name){
  * Load the appropiate scripts for the specified route
  */
 function wordpack_load_script($chunk_name){
-  $hot_file = get_template_directory() . "/assets/hot";
+  // $hot_file = get_template_directory() . "/assets/hot";
 
-  if(file_exists($hot_file)){
+  // if(file_exists($hot_file)){
     // load javascript from hmr server
     wp_enqueue_script(
-      "/js/".$chunk_name,
-      'http://localhost:8080'. "/js/".$chunk_name.'.js',
+      $chunk_name,
+      'http://localhost:3000'. "/assets/js/".$chunk_name.'.js',
       null,
       null,
       true
     );
-  }else{
-    // load javascript chunks
+  // }else{
+  //   // load javascript chunks
     
-    $manifest_chunks = get_template_directory() . "/assets/chunks-manifest.json";
+  //   $manifest_chunks = get_template_directory() . "/assets/chunks-manifest.json";
 
-    if(file_exists($manifest_chunks)){
-      $chunks = file_get_contents( $manifest_chunks);
-      $chunks_json = json_decode($chunks, true);
-      $my_chunks = $chunks_json['/js/'.$chunk_name]["scripts"];
+  //   if(file_exists($manifest_chunks)){
+  //     $chunks = file_get_contents( $manifest_chunks);
+  //     $chunks_json = json_decode($chunks, true);
+  //     $my_chunks = $chunks_json['/js/'.$chunk_name]["scripts"];
 
-      $last_time_modified_manifest  = date("ymd-Gis", filemtime(get_template_directory() . '/assets/chunks-manifest.json'));
+  //     $last_time_modified_manifest  = date("ymd-Gis", filemtime(get_template_directory() . '/assets/chunks-manifest.json'));
 
-      if($my_chunks){
-        foreach ($my_chunks as $key => $value) {
-          wp_enqueue_script(
-            $chunk_name.'-'.$key,
-            get_template_directory_uri() . '/assets'. $value,
-            null,
-            $last_time_modified_manifest,
-            true
-          );
-        }
-      }
-    }
+  //     if($my_chunks){
+  //       foreach ($my_chunks as $key => $value) {
+  //         wp_enqueue_script(
+  //           $chunk_name.'-'.$key,
+  //           get_template_directory_uri() . '/assets'. $value,
+  //           null,
+  //           $last_time_modified_manifest,
+  //           true
+  //         );
+  //       }
+  //     }
+  //   }
 
-  }
+  // }
 }
 
 

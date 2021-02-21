@@ -1,0 +1,6 @@
+body{
+  background: blue;
+  img{
+    border: 2px solid white;
+  }
+}
