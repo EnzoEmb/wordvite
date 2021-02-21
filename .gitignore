@@ -1,0 +1,6 @@
+node_modules
+cache-images
+assets/js/**
+!assets/js/.gitkeep
+!assets/img/.gitkeep
+!assets/css/.gitkeep

@@ -1,0 +1,18 @@
+.page-404 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #eaedef;
+  h1 {
+    letter-spacing: -0.04em;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    color: grey;
+    font-size: 1.5em;
+  }
+}
