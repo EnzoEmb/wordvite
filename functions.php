@@ -15,7 +15,7 @@ function add_theme_assets()
 	
 	// enqueue chunks conditionally
   if(is_home()){
-    wordpack_load_script('homepage');
+    // wordpack_load_script('homepage');
   }
   // if(is_page(5)){
   //   wordpack_load_chunk('page_2');

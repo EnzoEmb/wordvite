@@ -1,5 +1,7 @@
 // import {hola} from './myfunction';
 import $ from 'jquery'
+import '../css/app.css'
+// import 'vite/dynamic-import-polyfill'
 
 // hola();
 
@@ -13,6 +15,18 @@ import $ from 'jquery'
 // $('body').append('asdasd');
 // $('body').append('asdasdasdasd');
 $('body').append('0123456 asdasd asdasd asdasd');
+console.log('hola soy console log')
+
+
+function sum(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+
+console.log('hola soy numbers', sum(...numbers));
+
+
 // $.ajax({
 //   type: "POST",
 //   url: AJAX_URL,
