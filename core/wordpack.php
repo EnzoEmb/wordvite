@@ -55,7 +55,7 @@ add_filter('script_loader_tag', 'wordpack_defer_scripts', 10, 2);
  * Modularize scripts
  */
 function wordpack_module_scripts($tag, $handle) {
-  if ( is_user_logged_in() ) return $tag;
+  // if ( is_user_logged_in() ) return $tag;
   $exclude = [];
   if(!in_array($handle, $exclude)){
     $tag = str_replace(" type='text/javascript'", " type='module'", $tag);

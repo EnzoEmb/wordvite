@@ -12,7 +12,7 @@ import $ from 'jquery'
 // $('body').append('hpla');
 // $('body').append('asdasd');
 // $('body').append('asdasdasdasd');
-// $('body').append('0123456 asdasd asdasd asdasd');
+$('body').append('0123456 asdasd asdasd asdasd');
 // $.ajax({
 //   type: "POST",
 //   url: AJAX_URL,
