@@ -7,8 +7,8 @@
 
     <?php wp_footer(); ?>
 
-    <script nomodule src="<?php echo get_template_directory_uri(); ?>/assets/polyfills-legacy.68e8564d"></script>
-  <script nomodule src="http://wordvite.test/wp-content/themes/wordvite/assets/homepage-legacy.9579c3e3.js"></script>
+    <!-- <script nomodule src="<?php echo get_template_directory_uri(); ?>/assets/polyfills-legacy.68e8564d.js"></script> -->
+  <!-- <script nomodule src="<?php echo get_template_directory_uri(); ?>/assets/homepage-legacy.9579c3e3.js"></script> -->
   <!-- <script nomodule id="vite-legacy-entry" data-src="http://wordvite.test/wp-content/themes/wordvite/assets/homepage-legacy.9579c3e3.js">System.import(document.getElementById('vite-legacy-entry').getAttribute('data-src'))</script> -->
 
 

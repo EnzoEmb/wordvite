@@ -60,6 +60,9 @@ function wordpack_module_scripts($tag, $handle) {
   // if(!in_array($handle, $exclude)){
     if(strpos($handle, 'polyfill') !== false){
       $tag = str_replace(" type='text/javascript'", " nomodule", $tag);
+      $tag = str_replace(" id='polyfill-js'", "", $tag);
+      $tag = str_replace(" id='polyfill-homepage-js'", "", $tag);
+      $tag = str_replace("'", '"', $tag);
 
     }else{
       $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
@@ -145,31 +148,31 @@ function wordpack_load_script($chunk_name){
   }else{
     $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/manifest.json"), true);
     
-    // wp_enqueue_script(
-    //   'modern-'.$chunk_name,
-    //   get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name.".js"]["file"],
-    //   null,
-    //   null,
-    //   true
-    // );
+    wp_enqueue_script(
+      'modern-'.$chunk_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name.".js"]["file"],
+      null,
+      null,
+      true
+    );
 
     
     
-    // wp_enqueue_script(
-    //   'polyfill',
-    //   get_template_directory_uri(). "/assets/".$manifest["../vite/legacy-polyfills"]["file"],
-    //   null,
-    //   null,
-    //   true
-    // );
+    wp_enqueue_script(
+      'polyfill',
+      get_template_directory_uri(). "/assets/".$manifest["../vite/legacy-polyfills"]["file"],
+      null,
+      null,
+      true
+    );
     
-    // wp_enqueue_script(
-    //   'polyfill-'.$chunk_name,
-    //   get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
-    //   null,
-    //   null,
-    //   true
-    // );
+    wp_enqueue_script(
+      'polyfill-'.$chunk_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
+      null,
+      null,
+      true
+    );
 
 
 
