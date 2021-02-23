@@ -56,10 +56,16 @@ add_filter('script_loader_tag', 'wordpack_defer_scripts', 10, 2);
  */
 function wordpack_module_scripts($tag, $handle) {
   // if ( is_user_logged_in() ) return $tag;
-  $exclude = [];
-  if(!in_array($handle, $exclude)){
-    $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
-  }
+  // $exclude = [];
+  // if(!in_array($handle, $exclude)){
+    if(strpos($handle, 'polyfill') !== false){
+      $tag = str_replace(" type='text/javascript'", " nomodule", $tag);
+
+    }else{
+      $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
+
+    }
+  // }
   return $tag;
 
 }
@@ -122,7 +128,10 @@ function wordpack_load_style($style_name){
  */
 function wordpack_load_script($chunk_name){
   // $hot_file = get_template_directory() . "/assets/hot";
+  $is_watch = file_exists(get_template_directory() . "/assets/watch");
 
+
+  if($is_watch){
   // if(file_exists($hot_file)){
     // load javascript from hmr server
     wp_enqueue_script(
@@ -132,6 +141,40 @@ function wordpack_load_script($chunk_name){
       null,
       true
     );
+
+  }else{
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/manifest.json"), true);
+    
+    wp_enqueue_script(
+      'modern-'.$chunk_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name.".js"]["file"],
+      null,
+      null,
+      true
+    );
+
+    
+    
+    wp_enqueue_script(
+      'polyfill',
+      get_template_directory_uri(). "/assets/".$manifest["../vite/legacy-polyfills"]["file"],
+      null,
+      null,
+      true
+    );
+    
+    wp_enqueue_script(
+      'polyfill-'.$chunk_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
+      null,
+      null,
+      true
+    );
+
+
+
+  }
+
   // }else{
   //   // load javascript chunks
     

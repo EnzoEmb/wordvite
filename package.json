@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-run-all --parallel watch:vite watch:images",
-    "watch:vite": "vite",
+    "watch:vite": "cd > assets/watch && vite",
     "watch:images": "node ./wordpack/image.config.js --watch",
     "prod": "npm-run-all --parallel prod:vite prod:images",
     "prod:vite": "vite build",
