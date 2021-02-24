@@ -1,5 +1,8 @@
 node_modules
 cache-images
+assets/*.js
+assets/*.css
+assets/*.json
 assets/js/**
 !assets/js/.gitkeep
 !assets/img/.gitkeep

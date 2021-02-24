@@ -3,7 +3,7 @@
   <img alt="word-pack" src="https://i.imgur.com/X4plCaU.png">
 
 <p align="center">
-Wordpress Theme Boilerplate using Webpack throught Laravel Mix
+Wordpress Starter Theme using Vite as bundler
 </p>
 
 
@@ -22,14 +22,14 @@ npm run prod
 # Watch images
 npm run watch:images
 
-# Watch webpack js and css
-npm run watch:mix
+# Run vite serve
+npm run watch:vite
 
 # Optimize images
 npm run prod:images
 
-# Run webpack js and css
-npm run prod:mix
+# Run vite build
+npm run prod:vite
 
 # Zip theme
 npm run zip
@@ -39,15 +39,15 @@ npm run zip
 </details>
 
 ### Features
-🔥 Hot Module Reload on development<br>
-📦 Only serve the JS needed per page using webpack split chunks and conditional enqueuing<br>
+🔥 Hot Module Replacement<br>
+📦 Serve only the JS and CSS used per page<br>
 🧦 Put JS scripts in footer and defer<br>
 📂 Optimize images<br>
 🔩 Convert theme images to .webp<br>
-💄 Compile and autoprefix SASS<br>
-📑 Clean wordpress scripts and emoji tags<br>
+💄 PostCSS w/ nesting<br>
+📑 Clean Wordpress scripts and emoji tags<br>
 🥞 THEMEPATH and AJAX_URL variables<br>
-🍬 Clean and editable structure<br>
+🍬 Classic Wordpress theme structure (no weird stuff)<br>
 🧩 Example of secure Ajax with nonce<br>
 🎃 Cache bust of scripts and styles enqueued<br>
 
