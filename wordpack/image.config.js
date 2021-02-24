@@ -32,13 +32,10 @@ if (IS_WATCH) {
 } else {
 
   // process all images from src without chokidar
-  // processFolder(SRC_FOLDER);
+  console.log(chalk.cyan('optimizing images folder...'))
+
   walkDir(SRC_FOLDER, function (filePath) {
-
     optimizeImage(filePath)
-
-
-
   });
 
 
@@ -111,7 +108,7 @@ function optimizeImage(path) {
 
   // create folder if dont exists
   if (!fs.existsSync(OUTPUT_FOLDER + folder)) {
-    fs.mkdirSync(OUTPUT_FOLDER + folder, {recursive: true});
+    fs.mkdirSync(OUTPUT_FOLDER + folder, { recursive: true });
   }
 
 

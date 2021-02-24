@@ -60,3 +60,19 @@ npm run zip
   <summary>How does the image optimization works?</summary>
   While in watching mode, every image you put into "src/img" folder gets an optimized version in "assets/img" also a WEBP version is created
 </details>
+
+
+### Scaffolding
+
+```
+wordvite/
+├── assets/             // copied to dist/
+├── core/             // copied to dist/
+├── src/
+│   ├── global/
+│   │   └── index.css   // included in every generated page
+│   │   └── index.ts    // shipped entirely to client, if present
+│   ├── pages/          // fs-based routing like Next.js
+│   │   └── index.tsx
+└── tsconfig.json
+```

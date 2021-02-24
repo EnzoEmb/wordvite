@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
-
+console.log(chalk.cyan('cleaning assets folder...'))
 
 fs.readdir('./assets', (err, files) => {
   if (err) console.log(err);
