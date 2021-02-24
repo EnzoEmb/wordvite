@@ -16,7 +16,7 @@ export default {
 
   build: {
     outDir: resolve(__dirname, 'assets/'),
-    emptyOutDir: true,
+    emptyOutDir: false,
 
     manifest: true,
     // target: 'es2018',

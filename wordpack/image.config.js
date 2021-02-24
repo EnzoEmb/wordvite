@@ -111,7 +111,7 @@ function optimizeImage(path) {
 
   // create folder if dont exists
   if (!fs.existsSync(OUTPUT_FOLDER + folder)) {
-    fs.mkdirSync(OUTPUT_FOLDER + folder);
+    fs.mkdirSync(OUTPUT_FOLDER + folder, {recursive: true});
   }
 
 
