@@ -24,7 +24,7 @@ export default {
     assetsDir: './',
     rollupOptions: {
       input: {
-        homepage: resolve(__dirname, 'src/js/homepage.js'),
+        app: resolve(__dirname, 'src/js/app.js'),
         page_1: resolve(__dirname, 'src/js/page_1.js'),
     //     asdasd: resolve(__dirname, 'src/css/app.css')
       },

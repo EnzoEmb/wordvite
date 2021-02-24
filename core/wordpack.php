@@ -102,9 +102,11 @@ add_filter('style_loader_tag', 'wordpack_async_styles', 10, 2);
 
 function wordpack_load_style($style_name){
   $css_file = get_template_directory() . "/assets/css/" . $style_name. ".css";
+  $is_watch = file_exists(get_template_directory() . "/assets/watch");
   // $hot_file = get_template_directory() . "/assets/hot";
 
-  // if(file_exists($hot_file)){
+  if($is_watch){
+    // if(file_exists($hot_file)){
     // load css from hmr servers
     wp_enqueue_style(
       $style_name,
@@ -113,6 +115,29 @@ function wordpack_load_style($style_name){
       array(),
       null
     );
+  }else{
+    
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/manifest.json"), true);
+    
+    wp_enqueue_style(
+      $style_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$style_name.".js"]["css"][0],
+      array(),
+      null
+    );
+
+    // wp_enqueue_script(
+    //   'modern-'.$chunk_name,
+    //   get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name.".js"]["file"],
+    //   null,
+    //   null,
+    //   true
+    // );
+
+
+
+
+  }
   // }else{
   //   // load css file from assets
   //   $css_file_url = get_template_directory_uri() . "/assets/css/" . $style_name. ".css";
