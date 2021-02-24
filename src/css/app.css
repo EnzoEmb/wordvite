@@ -4,3 +4,10 @@ body{
     border: 2px solid white;
   }
 }
+
+.bg-test{
+  border: 2px solid slateblue;
+  width: 150px;
+  height: 150px;
+  background-image: url('img/wordpack.png');
+}
