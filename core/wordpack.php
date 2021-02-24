@@ -38,10 +38,13 @@ add_action( 'wp_footer', 'wordpack_disable_embed_js' );
  */
 function wordpack_defer_scripts($tag, $handle) {
   if ( is_user_logged_in() ) return $tag;
-  $exclude = [];
-  if(!in_array($handle, $exclude)){
+  // $exclude = [];
+  // if(!in_array($handle, $exclude)){
+    // var_dump(strpos($handle, 'polyfill'));
+    if(strpos($handle, 'polyfill') === false){
     $tag = str_replace(' src', ' defer src', $tag);
   }
+  // }
   return $tag;
 
 }
@@ -139,7 +142,7 @@ function wordpack_load_script($chunk_name){
     // load javascript from hmr server
     wp_enqueue_script(
       $chunk_name,
-      'http://localhost:3000'. "/assets/js/".$chunk_name.'.js',
+      'http://localhost:3000'. "/js/".$chunk_name.'.js',
       null,
       null,
       true
