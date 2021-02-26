@@ -6,7 +6,7 @@ body{
 }
 
 .bg-test{
-  border: 2px solid slateblue;
+  border: 2px solid red;
   width: 150px;
   height: 150px;
   background-image: url('img/vite.png');

@@ -3,37 +3,66 @@ import legacy from '@vitejs/plugin-legacy'
 const { resolve } = require('path')
 
 
-export default {
+export default ({ command, mode }) => {
 
-  root: 'src',
-  base: './',
+  // var postcss_config = (mode == 'development' ? 'wordpack/postcss.config.js' : 'wordpack/postcss.prod.js'); 
+  // console.log(mode);
 
-  plugins: [
-    legacy({
-      targets: ['defaults']
-    })
-  ],
+  return {
 
-  build: {
-    outDir: resolve(__dirname, 'assets/'),
-    emptyOutDir: false,
+    //   css: {
+    //     postcss: {
 
-    manifest: true,
-    // target: 'es2018',
-    // our entry
-    assetsDir: './',
-    rollupOptions: {
-      input: {
-        app: resolve(__dirname, 'src/js/app.js'),
-        page_1: resolve(__dirname, 'src/js/page_1.js'),
-    //     asdasd: resolve(__dirname, 'src/css/app.css')
-      },
-      // output: {
+    //       plugins: {
+    //         'postcss-nested': {},
+    //       'postcss-url': {
+    //         url: (asset) => {
+    //           // if (asset.url[0] === '/') {
+    //           // return `/static${asset.url}`;
+    //           // }
+    //           // return asset.url;
+    //           return (mode == 'development' ? `http://wordvite.test/wp-content/themes/wordvite/assets/${asset.url}` : `../${asset.url}`);
+    //         }
+    //       }
+    //     }
 
-      //   entryFileNames: `[name].js`,
-      //   chunkFileNames: `[name].js`,
-      //   assetFileNames: `[name].[ext]`
-      // }
-    }
-  },
+    //   }
+    // },
+
+
+    root: 'src',
+    base: './',
+
+    plugins: [
+      legacy({
+        targets: ['defaults']
+      })
+    ],
+
+    build: {
+      outDir: resolve(__dirname, 'assets/'),
+      emptyOutDir: false,
+
+      manifest: true,
+      // target: 'es2018',
+      // our entry
+      assetsDir: './',
+      rollupOptions: {
+        input: {
+          app: resolve(__dirname, 'src/js/app.js'),
+          page_1: resolve(__dirname, 'src/js/page_1.js'),
+          //     asdasd: resolve(__dirname, 'src/css/app.css')
+        },
+        // output: {
+
+        //   entryFileNames: `[name].js`,
+        //   chunkFileNames: `[name].js`,
+        //   assetFileNames: `[name].[ext]`
+        // }
+      }
+    },
+
+
+  }
+
 }

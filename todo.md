@@ -13,6 +13,9 @@
 - [x] IMAGES: Function to include the optimized image
 - [ ] WEBPACK: esLint
 - [ ] WEBPACK: babel
+- [ ] VITE: assets fonts folder
+- [ ] VITE:test improt
+- [ ] WEBPACK: babel
 - [x] CSS: style lint
 - [x] CSS: autoprefix
 - [x] Remove unused package.jsons
