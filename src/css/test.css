@@ -1,3 +1,10 @@
 body{
   border: 50px solid palegreen;
+  font-family: 'r'
+}
+
+
+@font-face {
+  font-family: "r";
+  src: url("fonts/rock.ttf");
 }

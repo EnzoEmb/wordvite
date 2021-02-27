@@ -3,7 +3,7 @@
 
 
 <main class="page-home">
-  <?php echo wordpack_img('vite.png', 'wordpack logo'); ?>
+  <?php// echo wordpack_img('vite.png', 'wordpack logo'); ?>
 
 
   xD

@@ -101,8 +101,8 @@ add_filter('style_loader_tag', 'wordpack_async_styles', 10, 2);
  */
 
 function wordpack_load_style($style_name){
-  $css_file = get_template_directory() . "/assets/css/" . $style_name. ".css";
-  $is_watch = file_exists(get_template_directory() . "/assets/watch");
+  $css_file = get_template_directory() . "/dist/" . $style_name. ".css";
+  $is_watch = file_exists(get_template_directory() . "/dist/watch");
   // $hot_file = get_template_directory() . "/assets/hot";
 
   if($is_watch){
@@ -111,13 +111,13 @@ function wordpack_load_style($style_name){
     wp_enqueue_style(
       $style_name,
       // 'http://localhost:3000'. "/assets/sass/".$style_name.'.css',
-      'http://localhost:3000'. "/assets/css/".$style_name.'.css',
+      'http://localhost:3000'. "/dist/css/".$style_name.'.css',
       array(),
       null
     );
   }else{
     
-    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/dist/js/manifest.json"), true);
     
     wp_enqueue_style(
       $style_name,
@@ -159,7 +159,7 @@ function wordpack_load_style($style_name){
  */
 function wordpack_load_script($chunk_name){
   // $hot_file = get_template_directory() . "/assets/hot";
-  $is_watch = file_exists(get_template_directory() . "/assets/watch");
+  $is_watch = file_exists(get_template_directory() . "/dist/watch");
 
 
   if($is_watch){
@@ -170,14 +170,14 @@ function wordpack_load_script($chunk_name){
       'http://localhost:3000'. "/js/".$chunk_name.'.js',
       null,
       null,
-      true
+      false
     );
 
   }else{
-    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/dist/manifest.json"), true);
     wp_enqueue_script(
       'modern-'.$chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["file"],
+      get_template_directory_uri(). "/dist/".$manifest["js/".$chunk_name.".js"]["file"],
       null,
       null,
       true
@@ -187,7 +187,7 @@ function wordpack_load_script($chunk_name){
     
     wp_enqueue_script(
       'polyfill',
-      get_template_directory_uri(). "/assets/js/".$manifest["../vite/legacy-polyfills"]["file"],
+      get_template_directory_uri(). "/dist/".$manifest["../vite/legacy-polyfills"]["file"],
       null,
       null,
       true
@@ -195,7 +195,7 @@ function wordpack_load_script($chunk_name){
     
     wp_enqueue_script(
       'polyfill-'.$chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
+      get_template_directory_uri(). "/dist/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
       null,
       null,
       true
@@ -206,7 +206,7 @@ function wordpack_load_script($chunk_name){
     
     wp_enqueue_style(
       $chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["css"][0],
+      get_template_directory_uri(). "/dist/".$manifest["js/".$chunk_name.".js"]["css"][0],
       array(),
       null
     );

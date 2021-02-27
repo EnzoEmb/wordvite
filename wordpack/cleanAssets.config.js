@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 console.log(chalk.cyan('cleaning assets folder...'))
 
-fs.readdir('./assets/js', (err, files) => {
+fs.readdir('./dist/js', (err, files) => {
   if (err) console.log(err);
   // console.log(files)
   for (const file of files) {

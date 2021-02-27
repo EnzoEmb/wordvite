@@ -40,7 +40,7 @@ export default ({ command, mode }) => {
     ],
 
     build: {
-      outDir: resolve(__dirname, 'assets/'),
+      outDir: resolve(__dirname, 'dist/'),
       emptyOutDir: false,
 
       manifest: true,
@@ -53,12 +53,12 @@ export default ({ command, mode }) => {
           page_1: resolve(__dirname, 'src/js/page_1.js'),
           //     asdasd: resolve(__dirname, 'src/css/app.css')
         },
-        output: {
-          dir: 'assets/js'
-          // entryFileNames: `js/[name].js`,
-          // chunkFileNames: `js/[name].js`,
-          // assetFileNames: `js/[name].[ext]`
-        }
+        // output: {
+        //   dir: 'assets/js'
+        //   // entryFileNames: `js/[name].js`,
+        //   // chunkFileNames: `js/[name].js`,
+        //   // assetFileNames: `js/[name].[ext]`
+        // }
       }
     },
 
