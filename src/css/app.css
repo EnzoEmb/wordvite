@@ -1,3 +1,7 @@
+@import 'bootstrap';
+@import 'test';
+
+
 body{
   background: orange;
   img{

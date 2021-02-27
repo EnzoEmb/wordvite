@@ -54,11 +54,15 @@ npm run zip
 ### Guide
 <details>
   <summary>How to add a new page script?</summary>
-  Create a .js file in src/js and add a new line in the JS section in webpack.mix.js then enqueue it in functions.php using the wordpack_load_chunk(JS_NAME) function
+  Create a .js file in src/js and add a new line in the JS section in wordvite.config.js then enqueue it conditionally in functions.php using the wordpack_load_script(JS_NAME) function
 </details>
 <details>
   <summary>How does the image optimization works?</summary>
-  While in watching mode, every image you put into "src/img" folder gets an optimized version in "assets/img" also a WEBP version is created
+  While in watching mode, every image you put into "src/img" folder gets an optimized version in "assets/img" also a WEBP version is created, you can add it in the theme by using the wordpack_img PHP function
+</details>
+<details>
+  <summary>How does url() works in css</summary>
+  While in dev, the urls will point to the assets folder, in production will be pointing to ../
 </details>
 
 
@@ -66,8 +70,9 @@ npm run zip
 
 ```
 wordvite/
-├── assets/             // copied to dist/
-├── core/             // copied to dist/
+├── assets/              // public assets (like fonts) and output of processed assets
+├── core/ 
+│   ├── wordvite.php     // contains wordvite useful php functions
 ├── src/
 │   ├── global/
 │   │   └── index.css   // included in every generated page
