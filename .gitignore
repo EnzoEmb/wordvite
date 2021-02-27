@@ -1,6 +1,3 @@
 node_modules
-assets/*.js
-assets/*.css
-assets/*.json
-!assets/img/.gitkeep
+assets/js
 assets/watch

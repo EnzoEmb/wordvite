@@ -10,7 +10,7 @@ function add_theme_assets()
 {
 
 	// enqueue style
-	wordpack_load_style('app');
+	// wordpack_load_style('app');
 
 	
 	// enqueue chunks conditionally

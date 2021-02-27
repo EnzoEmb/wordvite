@@ -12,6 +12,7 @@
     "prod:vite": "node ./wordpack/cleanAssets.config.js && vite build",
     "prod:images": "node ./wordpack/image.config.js",
     "critical": "node ./wordpack/critical.config.js",
+    "preview": "vite preview",
     "zip": "node ./wordpack/archiver.config.js"
   },
   "repository": {

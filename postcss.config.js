@@ -11,7 +11,7 @@ module.exports = {
                 // return `/static${asset.url}`;
             // }
             // return asset.url;
-            return ( process.env.NODE_ENV == 'development' ? `http://wordvite.test/wp-content/themes/wordvite/assets/${asset.url}` : asset.url);
+            return ( process.env.NODE_ENV == 'development' ? `http://wordvite.test/wp-content/themes/wordvite/assets/${asset.url}` : '../'+asset.url);
         }
     }
   }

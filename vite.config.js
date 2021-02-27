@@ -53,12 +53,12 @@ export default ({ command, mode }) => {
           page_1: resolve(__dirname, 'src/js/page_1.js'),
           //     asdasd: resolve(__dirname, 'src/css/app.css')
         },
-        // output: {
-
-        //   entryFileNames: `[name].js`,
-        //   chunkFileNames: `[name].js`,
-        //   assetFileNames: `[name].[ext]`
-        // }
+        output: {
+          dir: 'assets/js'
+          // entryFileNames: `js/[name].js`,
+          // chunkFileNames: `js/[name].js`,
+          // assetFileNames: `js/[name].[ext]`
+        }
       }
     },
 
