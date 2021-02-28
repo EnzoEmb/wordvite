@@ -1,0 +1,14 @@
+@import "bootstrap";
+
+body {
+  min-height: 100vh;
+  background: #efefef;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    font-size: 20px;
+    color: slategray;
+  }
+}

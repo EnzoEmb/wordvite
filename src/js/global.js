@@ -1,6 +1,6 @@
 // import {hola} from './myfunction';
 import $ from 'jquery'
-import '../css/app.css'
+import '../css/global.css'
 // import 'vite/dynamic-import-polyfill'
 
 // hola();
@@ -14,7 +14,7 @@ import '../css/app.css'
 // $('body').append('hpla');
 // $('body').append('asdasd');
 // $('body').append('asdasdasdasd');
-$('body').append('0123456 asdasd asdasd asdasd');
+// $('body').append('0123456 asdasd asdasd asdasd');
 console.log('hola soy console log')
 
 

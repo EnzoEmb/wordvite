@@ -1,7 +1,23 @@
 <?php 
+
+/*
+|--------------------------------------------------------------------------
+| Wordvite v1.0.0 helper functions
+|--------------------------------------------------------------------------
+|
+| Here you may register all of the event broadcasting channels that your
+| application supports. The given channel authorization callbacks are
+| used to check if an authenticated user can listen to the channel.
+|
+*/
+
+
+
+
 /**
  * 
- * Disable emojis
+ * Remove emoji scripts
+ * 
  */
 function wordpack_disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -11,23 +27,22 @@ function wordpack_disable_emojis() {
 	remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
 	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
 	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
-	
-	// Remove from TinyMCE
-	// add_filter( 'tiny_mce_plugins', 'wordpack_disable_emojis_tinymce' );
 }
 add_action( 'init', 'wordpack_disable_emojis' );
 
-
-
-
 /**
  * 
- * Disable wp-embed.js
+ * Remove wp-embed script
+ * 
  */
 function wordpack_disable_embed_js(){
   wp_deregister_script( 'wp-embed' );
 }
 add_action( 'wp_footer', 'wordpack_disable_embed_js' );
+
+
+
+
 
 
 
@@ -268,9 +283,14 @@ function wordpack_ajax($ajax_name, $key){
 }
 
 
+
+
 /**
  * 
- * Check if is in dev
+ * Check if site is in development mode
+ * 
+ * If is in localhost and DEBUG is true
+ * 
  */
 function wordpack_is_dev()
 {
@@ -283,6 +303,8 @@ function wordpack_is_dev()
 		return true;
 	}
 }
+
+
 
 
 /**

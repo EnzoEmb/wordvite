@@ -1,5 +1,5 @@
 <?php 
-include_once "core/wordpack.php";
+include_once "core/wordvite.php";
 
 
 /**
@@ -15,7 +15,7 @@ function add_theme_assets()
 	
 	// enqueue chunks conditionally
   if(is_home()){
-    wordpack_load_script('app');
+    wordpack_load_script('global');
   }
   // if(is_page(5)){
   //   wordpack_load_chunk('page_2');
