@@ -10,7 +10,7 @@ function add_theme_assets()
 {
 
 	// enqueue style
-	// wordvite_load_style('global');
+	wordvite_load_style('vendor');
 
 	
 	// enqueue chunks conditionally

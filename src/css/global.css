@@ -1,9 +1,8 @@
-@import "bootstrap";
 @import "pages/404";
 
 .page-home {
   min-height: 100vh;
-  background: #efefef;
+  background: red;
   text-align: center;
   display: flex;
   align-items: center;

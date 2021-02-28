@@ -20,7 +20,8 @@ export default {
     assetsDir: './',
     rollupOptions: {
       input: {
-        app: resolve(__dirname, 'src/js/global.js'),
+        global: resolve(__dirname, 'src/js/global.js'),
+        global_css: resolve(__dirname, 'src/css/vendor.css'),
         homepage: resolve(__dirname, 'src/js/homepage.js'),
       },
       output: {

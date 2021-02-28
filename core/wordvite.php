@@ -116,7 +116,7 @@ function wordvite_load_style($style_name){
   if($is_watch){
     wp_enqueue_style(
       $style_name,
-      'http://localhost:3000'. "/assets/css/".$style_name.'.css',
+      'http://localhost:3000'. "/css/".$style_name.'.css',
       array(),
       null
     );
