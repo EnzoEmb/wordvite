@@ -19,7 +19,7 @@
  * Remove emoji scripts
  * 
  */
-function wordpack_disable_emojis() {
+function wordvite_disable_emojis() {
 	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 	remove_action( 'wp_print_styles', 'print_emoji_styles' );
@@ -28,273 +28,44 @@ function wordpack_disable_emojis() {
 	remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );	
 	remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
 }
-add_action( 'init', 'wordpack_disable_emojis' );
+add_action( 'init', 'wordvite_disable_emojis' );
+
 
 /**
  * 
  * Remove wp-embed script
  * 
  */
-function wordpack_disable_embed_js(){
+function wordvite_disable_embed_js(){
   wp_deregister_script( 'wp-embed' );
 }
-add_action( 'wp_footer', 'wordpack_disable_embed_js' );
-
-
-
-
-
-
+add_action( 'wp_footer', 'wordvite_disable_embed_js' );
 
 
 /**
  * 
- * Defer scripts
- */
-function wordpack_defer_scripts($tag, $handle) {
-  if ( is_user_logged_in() ) return $tag;
-  // $exclude = [];
-  // if(!in_array($handle, $exclude)){
-    // var_dump(strpos($handle, 'polyfill'));
-    if(strpos($handle, 'polyfill') === false){
-    $tag = str_replace(' src', ' defer src', $tag);
-  }
-  // }
-  return $tag;
-
-}
-add_filter('script_loader_tag', 'wordpack_defer_scripts', 10, 2);
-
-
-
-
-/**
+ * Add module or nomodule type to vite assets
  * 
- * Modularize scripts
  */
-function wordpack_module_scripts($tag, $handle) {
-  // if ( is_user_logged_in() ) return $tag;
-  // $exclude = [];
-  // if(!in_array($handle, $exclude)){
-    if(strpos($handle, 'polyfill') !== false){
-      $tag = str_replace(" type='text/javascript'", " nomodule", $tag);
-      $tag = str_replace(" id='polyfill-js'", "", $tag);
-      $tag = str_replace(" id='polyfill-homepage-js'", "", $tag);
-      $tag = str_replace("'", '"', $tag);
-
-    }else{
-      $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
-
-    }
-  // }
-  return $tag;
-
-}
-add_filter('script_loader_tag', 'wordpack_module_scripts', 10, 2);
-
-
-
-
-/**
- * 
- * Async styles
- */
-function wordpack_async_styles($tag, $handle) {
-  $include = ["wp-block-library"];
-  if(in_array($handle, $include)){
-    $tag = str_replace(" media='all'", ' media="print" onload="this.media=\'all\'; this.onload=null;"', $tag);
-  }
-  return $tag;
-  
-}
-add_filter('style_loader_tag', 'wordpack_async_styles', 10, 2);
-
-
-/**
- * 
- * Load the styles
- */
-
-function wordpack_load_style($style_name){
-  $css_file = get_template_directory() . "/assets/css/" . $style_name. ".css";
-  $is_watch = file_exists(get_template_directory() . "/assets/watch");
-  // $hot_file = get_template_directory() . "/assets/hot";
-
-  if($is_watch){
-    // if(file_exists($hot_file)){
-    // load css from hmr servers
-    wp_enqueue_style(
-      $style_name,
-      // 'http://localhost:3000'. "/assets/sass/".$style_name.'.css',
-      'http://localhost:3000'. "/assets/css/".$style_name.'.css',
-      array(),
-      null
-    );
+function wordvite_module_scripts($tag, $handle) {
+  if(strpos($handle, 'polyfill') !== false){
+    $tag = str_replace(" type='text/javascript'", " nomodule", $tag);
   }else{
-    
-    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
-    
-    wp_enqueue_style(
-      $style_name,
-      get_template_directory_uri(). "/assets/".$manifest["js/".$style_name.".js"]["css"][0],
-      array(),
-      null
-    );
-
-    // wp_enqueue_script(
-    //   'modern-'.$chunk_name,
-    //   get_template_directory_uri(). "/assets/".$manifest["js/".$chunk_name.".js"]["file"],
-    //   null,
-    //   null,
-    //   true
-    // );
-
-
-
-
+    $tag = str_replace(" type='text/javascript'", " type='module'", $tag);
   }
-  // }else{
-  //   // load css file from assets
-  //   $css_file_url = get_template_directory_uri() . "/assets/css/" . $style_name. ".css";
-  //   $last_time_modified  = date("ymd-Gis", filemtime($css_file));
-  //   wp_enqueue_style(
-  //     $style_name,
-  //     $css_file_url,
-  //     array(),
-  //     $last_time_modified
-  //   );
-  // }
-
+  return $tag;
 }
-
-
-/**
- * 
- * Load the appropiate scripts for the specified route
- */
-function wordpack_load_script($chunk_name){
-  // $hot_file = get_template_directory() . "/assets/hot";
-  $is_watch = file_exists(get_template_directory() . "/assets/watch");
-
-
-  if($is_watch){
-  // if(file_exists($hot_file)){
-    // load javascript from hmr server
-    wp_enqueue_script(
-      $chunk_name,
-      'http://localhost:3000'. "/js/".$chunk_name.'.js',
-      null,
-      null,
-      true
-    );
-
-  }else{
-    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
-    wp_enqueue_script(
-      'modern-'.$chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["file"],
-      null,
-      null,
-      true
-    );
-
-    
-    
-    wp_enqueue_script(
-      'polyfill',
-      get_template_directory_uri(). "/assets/js/".$manifest["../vite/legacy-polyfills"]["file"],
-      null,
-      null,
-      true
-    );
-    
-    wp_enqueue_script(
-      'polyfill-'.$chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
-      null,
-      null,
-      true
-    );
-
-    if($manifest["js/".$chunk_name.".js"]["css"]){
-      
-    
-    wp_enqueue_style(
-      $chunk_name,
-      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["css"][0],
-      array(),
-      null
-    );
-
-    }
-
-
-
-
-
-
-
-  }
-
-  // }else{
-  //   // load javascript chunks
-    
-  //   $manifest_chunks = get_template_directory() . "/assets/chunks-manifest.json";
-
-  //   if(file_exists($manifest_chunks)){
-  //     $chunks = file_get_contents( $manifest_chunks);
-  //     $chunks_json = json_decode($chunks, true);
-  //     $my_chunks = $chunks_json['/js/'.$chunk_name]["scripts"];
-
-  //     $last_time_modified_manifest  = date("ymd-Gis", filemtime(get_template_directory() . '/assets/chunks-manifest.json'));
-
-  //     if($my_chunks){
-  //       foreach ($my_chunks as $key => $value) {
-  //         wp_enqueue_script(
-  //           $chunk_name.'-'.$key,
-  //           get_template_directory_uri() . '/assets'. $value,
-  //           null,
-  //           $last_time_modified_manifest,
-  //           true
-  //         );
-  //       }
-  //     }
-  //   }
-
-  // }
-}
-
-
-/**
- * 
- * Register inline script w/ ajax nonce
- */
-function wordpack_ajax($ajax_name, $key){
-  
-  $script_name = uniqid();
-	wp_register_script( $script_name, '' );
-	wp_enqueue_script( $script_name );
-	wp_add_inline_script( $script_name, 'const '.$ajax_name.' = "'.wp_create_nonce('MY_NONCE_KEY').'"');
-
-
-	// wp_register_script( 'my-ajax-nonce-script', '' );
-	// wp_enqueue_script( 'my-ajax-nonce-script' );
-	// wp_add_inline_script( 'my-ajax-nonce-script', 'const MY_ACTION_NONCE = "'.wp_create_nonce('MY_NONCE_KEY').'"');
-}
-
-
+add_filter('script_loader_tag', 'wordvite_module_scripts', 10, 2);
 
 
 /**
  * 
  * Check if site is in development mode
- * 
- * If is in localhost and DEBUG is true
+ * true if is in localhost and DEBUG is true
  * 
  */
-function wordpack_is_dev()
+function wordvite_is_dev()
 {
-  // check if is in localhost and debug is true
 	$whitelist = array(
 		'127.0.0.1',
 		'::1'
@@ -305,24 +76,20 @@ function wordpack_is_dev()
 }
 
 
-
-
 /**
  * 
- * Wordpack Image
+ * Get optimized image and webp version
+ * 
  */
-function wordpack_img($name, $alt){
+function wordvite_img($name, $alt){
   $file_path = get_template_directory() . '/assets/img/' . $name;
   $file_type = mime_content_type($file_path);
   $file_name = pathinfo($name, PATHINFO_FILENAME);;
   $file_path_webp = get_template_directory() . '/assets/img/' . $file_name . '.webp';
   $file_size = getimagesize($file_path);
 
-
-
   if(file_exists($file_path)){
     $original_url = get_template_directory_uri() . '/assets/img/' . $name;
-    // return '<img src="'.$url.'" alt="'.$alt.'" />';
   }
   if(file_exists($file_path_webp)){
     $webp_url = get_template_directory_uri() . '/assets/img/' . $file_name . '.webp';
@@ -334,3 +101,161 @@ function wordpack_img($name, $alt){
   '.($original_url ? '<img src="'.$original_url.'" '.$file_size[3].'>' : '').'
   </picture>';
 }
+
+
+/**
+ * 
+ * Enqueue corresponding vite styles for dev and prod
+ * 
+ */
+
+function wordvite_load_style($style_name){
+  $css_file = get_template_directory() . "/assets/css/" . $style_name. ".css";
+  $is_watch = file_exists(get_template_directory() . "/assets/watch");
+
+  if($is_watch){
+    wp_enqueue_style(
+      $style_name,
+      'http://localhost:3000'. "/assets/css/".$style_name.'.css',
+      array(),
+      null
+    );
+  }else{
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
+    wp_enqueue_style(
+      $style_name,
+      get_template_directory_uri(). "/assets/".$manifest["js/".$style_name.".js"]["css"][0],
+      array(),
+      null
+    );
+  }
+
+}
+
+
+/**
+ * 
+ * Load the appropiate scripts for the specified route
+ */
+function wordvite_load_script($chunk_name){
+  $is_watch = file_exists(get_template_directory() . "/assets/watch");
+
+  if($is_watch){
+    wp_enqueue_script(
+      $chunk_name,
+      'http://localhost:3000'. "/js/".$chunk_name.'.js',
+      null,
+      null,
+      true
+    );
+
+  }else{
+    $manifest = json_decode(file_get_contents(get_template_directory() . "/assets/js/manifest.json"), true);
+
+    // modern bundle
+    wp_enqueue_script(
+      'modern-'.$chunk_name,
+      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["file"],
+      null,
+      null,
+      true
+    );
+
+    // polyfill
+    wp_enqueue_script(
+      'polyfill',
+      get_template_directory_uri(). "/assets/js/".$manifest["../vite/legacy-polyfills"]["file"],
+      null,
+      null,
+      true
+    );
+    
+    // polyfill bundle
+    wp_enqueue_script(
+      'polyfill-'.$chunk_name,
+      get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name."-legacy.js"]["file"],
+      null,
+      null,
+      true
+    );
+
+    // css if have
+    if($manifest["js/".$chunk_name.".js"]["css"]){    
+      wp_enqueue_style(
+        $chunk_name,
+        get_template_directory_uri(). "/assets/js/".$manifest["js/".$chunk_name.".js"]["css"][0],
+        array(),
+        null
+      );
+    }
+
+  }
+}
+
+
+
+
+
+/**
+ * 
+ * Defer scripts
+ */
+// function wordvite_defer_scripts($tag, $handle) {
+//   if ( is_user_logged_in() ) return $tag;
+//   // $exclude = [];
+//   // if(!in_array($handle, $exclude)){
+//     // var_dump(strpos($handle, 'polyfill'));
+//     if(strpos($handle, 'polyfill') === false){
+//     $tag = str_replace(' src', ' defer src', $tag);
+//   }
+//   // }
+//   return $tag;
+
+// }
+// add_filter('script_loader_tag', 'wordvite_defer_scripts', 10, 2);
+
+
+
+
+
+/**
+ * 
+ * Async styles
+ */
+// function wordvite_async_styles($tag, $handle) {
+//   $include = ["wp-block-library"];
+//   if(in_array($handle, $include)){
+//     $tag = str_replace(" media='all'", ' media="print" onload="this.media=\'all\'; this.onload=null;"', $tag);
+//   }
+//   return $tag;
+  
+// }
+// add_filter('style_loader_tag', 'wordvite_async_styles', 10, 2);
+
+
+
+
+
+/**
+ * 
+ * Register inline script w/ ajax nonce
+ */
+// function wordvite_ajax($ajax_name, $key){
+  
+//   $script_name = uniqid();
+// 	wp_register_script( $script_name, '' );
+// 	wp_enqueue_script( $script_name );
+// 	wp_add_inline_script( $script_name, 'const '.$ajax_name.' = "'.wp_create_nonce('MY_NONCE_KEY').'"');
+
+
+// 	// wp_register_script( 'my-ajax-nonce-script', '' );
+// 	// wp_enqueue_script( 'my-ajax-nonce-script' );
+// 	// wp_add_inline_script( 'my-ajax-nonce-script', 'const MY_ACTION_NONCE = "'.wp_create_nonce('MY_NONCE_KEY').'"');
+// }
+
+
+
+
+
+
+

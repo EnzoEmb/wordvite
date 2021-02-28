@@ -1,16 +1,12 @@
-@import "bootstrap";
-@import "pages/404";
-
-.page-home {
-  min-height: 100vh;
+.page-404{
   background: #efefef;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  h1 {
-    font-size: 20px;
+  p{
     color: slategray;
   }
 }
