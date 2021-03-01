@@ -2,7 +2,7 @@
 
 .page-home {
   min-height: 100vh;
-  background: red;
+  background: #efefef;
   text-align: center;
   display: flex;
   align-items: center;
@@ -12,4 +12,5 @@
     font-size: 20px;
     color: slategray;
   }
+  background-image: url('img/vite.png');
 }

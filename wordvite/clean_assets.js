@@ -1,3 +1,9 @@
+/*
+|--------------------------------------------------------------------------
+| Wordvite v1.0.0 Clean Assts Folder Function
+|--------------------------------------------------------------------------
+*/
+
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');

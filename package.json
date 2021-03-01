@@ -9,9 +9,8 @@
     "watch:vite": "cd > assets/watch && vite",
     "watch:images": "node ./wordvite/image.config.js --watch",
     "prod": "npm run prod:vite && npm run prod:images",
-    "prod:vite": "node ./wordvite/cleanAssets.config.js && vite build",
+    "prod:vite": "node ./wordvite/clean_assets.js && vite build",
     "prod:images": "node ./wordvite/image.config.js",
-    "critical": "node ./wordvite/critical.config.js",
     "preview": "vite preview",
     "zip": "node ./wordvite/archiver.config.js"
   },
@@ -31,11 +30,8 @@
     "chalk": "^2.4.2",
     "chokidar": "^3.5.1",
     "npm-run-all": "^4.1.5",
-    "postcss-load-config": "^3.0.1",
     "postcss-nested": "^5.0.3",
     "postcss-url": "^10.1.1",
-    "puppeteer": "^7.0.1",
-    "sass": "^1.32.8",
     "sharp": "^0.27.1",
     "vite": "^2.0.4"
   },
