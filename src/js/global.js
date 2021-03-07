@@ -1,25 +1,11 @@
-import $ from 'jquery'
-
 import '../css/vendor.css'
 import '../css/global.css'
 
-
-console.log('hola soy console log')
-
-$('body').append('Testing Javascript')
+const version = document.querySelector('.wv-version')
+version.innerHTML = 'v1.0.0'
 
 
-function sum(x, y, z) {
-  return x + y + z;
-}
-
-const numbers = [1, 2, 3];
-
-console.log('hola soy numbers', sum(...numbers));
-
-
-
-
+// hmr
 if (import.meta.hot) {
   import.meta.hot.accept()
 }

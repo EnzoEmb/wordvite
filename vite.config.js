@@ -6,6 +6,7 @@ const { resolve } = require('path')
 export default {
   root: 'src',
   base: './',
+  publicDir: 'assets',
 
   plugins: [
     legacy({
@@ -21,14 +22,10 @@ export default {
     rollupOptions: {
       input: {
         global: resolve(__dirname, 'src/js/global.js'),
-        global_css: resolve(__dirname, 'src/css/vendor.css'),
         homepage: resolve(__dirname, 'src/js/homepage.js'),
       },
       output: {
         dir: 'assets/js'
-        // entryFileNames: `js/[name].js`,
-        // chunkFileNames: `js/[name].js`,
-        // assetFileNames: `js/[name].[ext]`
       }
     }
   },
