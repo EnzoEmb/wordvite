@@ -167,13 +167,13 @@ function wv_load_script($chunk_name){
     );
 
     // polyfill
-    // wp_enqueue_script(
-    //   'polyfill',
-    //   get_template_directory_uri(). "/assets/js/".$manifest["../vite/legacy-polyfills"]["file"],
-    //   null,
-    //   null,
-    //   true
-    // );
+    wp_enqueue_script(
+      'polyfill',
+      get_template_directory_uri(). "/assets/js/".$manifest["../vite/legacy-polyfills"]["file"],
+      null,
+      null,
+      true
+    );
     
     // polyfill bundle
     wp_enqueue_script(
