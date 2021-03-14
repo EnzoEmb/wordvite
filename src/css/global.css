@@ -11,8 +11,9 @@
   h1 {
     font-size: 20px;
     color: slategray;
+    user-select: none;
   }
-  background-image: url('img/logo.png');
+  /* background-image: url('img/logo.png'); */
   /* background-image: url('img/vite.png'); */
   /* background-image: url('img/vite.webp'); */
 }

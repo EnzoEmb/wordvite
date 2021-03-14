@@ -2,7 +2,7 @@ import '../css/vendor.css'
 import '../css/global.css'
 
 const version = document.querySelector('.wv-version')
-version.innerHTML = 'v1.0.0'
+version.innerHTML = 'v0.1.0'
 
 
 // hmr
