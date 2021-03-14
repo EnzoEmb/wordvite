@@ -138,6 +138,14 @@ function wv_load_script($chunk_name){
   if($is_watch){
 
     wp_enqueue_script(
+      'vite-client',
+      'http://localhost:3000/@vite/client',
+      null,
+      null,
+      false
+    );
+
+    wp_enqueue_script(
       $chunk_name,
       'http://localhost:3000'. "/js/".$chunk_name.'.js',
       null,
