@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img alt="wordvite" src="https://i.imgur.com/X4plCaU.png">
+  <img alt="wordvite" src="https://repository-images.githubusercontent.com/340928658/9da8d380-76d9-11eb-8074-1bbd13f2a998">
 
 <p align="center">
 Wordpress Starter Theme using Vite as bundler
@@ -51,7 +51,7 @@ npm run zip
 ### Guide
 <details>
   <summary>How to add a new page script?</summary>
-  Create a .js file in src/js and add a new line in the JS section in wordvite.config.js then enqueue it conditionally in functions.php using the wv_load_script(JS_NAME) function
+  Create a .js file in src/js and add a new line in the JS section in vite.config.js then enqueue it conditionally in functions.php using the wv_load_script(JS_NAME) function
 </details>
 <details>
   <summary>How does the image optimization works?</summary>
