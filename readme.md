@@ -68,13 +68,12 @@ npm run zip
 ```
 wordvite/
 ├── assets/              // public assets (like fonts) and output of processed assets
+│   ├── img/             // output of optimized images
+│   ├── js/              // output of builded vite files (js and css)
 ├── core/ 
 │   ├── wordvite.php     // contains wordvite useful php functions
 ├── src/
-│   ├── global/
-│   │   └── index.css   // included in every generated page
-│   │   └── index.ts    // shipped entirely to client, if present
-│   ├── pages/          // fs-based routing like Next.js
-│   │   └── index.tsx
-└── tsconfig.json
+│   ├── css/             // style files
+│   ├── img/             // theme files
+│   ├── js/              // javascript files
 ```
