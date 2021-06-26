@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img alt="wordvite" src="https://repository-images.githubusercontent.com/340928658/9da8d380-76d9-11eb-8074-1bbd13f2a998">
+  <img alt="wordvite" src="https://raw.githubusercontent.com/EnzoEmb/wordvite/master/src/img/logo.png">
 
 <p align="center">
 Wordpress Starter Theme using Vite as bundler
