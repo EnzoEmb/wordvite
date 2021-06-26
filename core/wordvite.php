@@ -130,7 +130,7 @@ function wv_load_style($style_name){
 
 /**
  * 
- * Load the appropiate scripts for the specified route
+ * Load the appropiate script for the route
  */
 function wv_load_script($chunk_name){
   $is_watch = file_exists(get_template_directory() . "/assets/watch");

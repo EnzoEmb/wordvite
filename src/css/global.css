@@ -2,18 +2,24 @@
 
 .page-home {
   min-height: 100vh;
-  background: #efefef;
+  background: #1a205c;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px;
+  img{
+    max-width: 100%;
+    width: 350px;
+    height: auto;
+  }
   h1 {
     font-size: 20px;
-    color: slategray;
+    color: #fed1a1;
     user-select: none;
   }
-  /* background-image: url('img/logo.png'); */
-  /* background-image: url('img/vite.png'); */
-  /* background-image: url('img/vite.webp'); */
+  p{
+    color: white;
+  }
 }

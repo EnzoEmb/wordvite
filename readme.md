@@ -51,7 +51,7 @@ npm run zip
 ### Guide
 <details>
   <summary>How to add a new page script?</summary>
-  Create a .js file in src/js and add a new line in the JS section in vite.config.js then enqueue it conditionally in functions.php using the wv_load_script(JS_NAME) function
+  Create a .js file in src/js, then enqueue it conditionally in functions.php using the wv_load_script(JS_NAME) function
 </details>
 <details>
   <summary>How does the image optimization works?</summary>
@@ -72,8 +72,8 @@ wordvite/
 │   ├── js/              // output of builded vite files (js and css)
 ├── core/ 
 │   ├── wordvite.php     // contains wordvite useful php functions
-├── src/
+├── src/    
 │   ├── css/             // style files
-│   ├── img/             // theme files
+│   ├── img/             // theme images
 │   ├── js/              // javascript files
 ```
