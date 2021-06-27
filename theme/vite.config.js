@@ -1,8 +1,6 @@
 
 import legacy from '@vitejs/plugin-legacy';
 import { getScriptFiles } from "wordvite";
-
-// const { resolve } = require('path')
 import { resolve } from 'path';
 
 export default {

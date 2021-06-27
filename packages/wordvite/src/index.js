@@ -17,7 +17,6 @@ function getScriptFiles() {
       return console.log('Unable to scan directory: ' + err);
     }
     files.forEach(function (file) {
-      // var name_no_extension = file.split('.').slice(0, -1).join('.');
       var name_no_extension = removeStringExtension(file);
       main_js_files[name_no_extension] = resolve(__dirname, 'src/js/' + file);
     });

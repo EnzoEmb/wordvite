@@ -1,33 +1,81 @@
 #!/usr/bin/env node
 
-// const commander = require('commander');
 const archiver = require('../src/archiver');
-// import arch from '../src/archiver';
-
-// const { resolve } = require('path');
+const image = require('../src/image');
 const path = process.cwd();
-
-// const path = require('path');
-// console.log(process.env);
-
 const program = require('commander');
+// const cp = require('child_process');
+const { spawn, exec } = require('child_process');
+// const vite = require('vite');
 
-// console.log('Basdasd')
+// watch (no arguments)
+if (!process.argv.slice(2).length) {
+  console.log('WATCHHH')
+  // console.log(vite);
+  // vite.build();
+  // vite();
+  // cp.exec('vite --config my-config.js', function(e, stdout, stderr) {
+  //   console.log(stdout);
+  //   console.log(stderr);
+  //   if (e) throw e;
+  // });
+  // exec('npx vite', function(e, stdout, stderr) {
+  //   console.log(stdout);
+  //   console.log(stderr);
+  //   if (e) throw e;
+  // });
+  // var spawna = spawn('npx vite');     
+  // spawna.stdout.on('data', function(msg){         
+  //     console.log(msg.toString())
+  // });
+  // exec('vite');
 
 
-// const program = new commander.Command();
+  exec('npm run vite', (err, stdout, stderr) => {
+    if (err) {
+      // node couldn't execute the command
+      return;
+    }
 
-// const brew = program.command('brew');
-// brew.command('wordvite')
-//   .action(() => {
-//     console.log('brew tea');
-//   });
+    // the *entire* stdout and stderr (buffered)
+    console.log(`stdout: ${stdout}`);
+    console.log(`stderr: ${stderr}`);
+  });
+}
 
+// build
+program
+  .command('build')
+  .description('main build process')
+  .action(() => {
+    console.log('BUILDDD')
+  });
+
+
+
+
+// image optimize
+program
+  .command('images')
+  .option('-w, --watch', 'is in watching mode')
+  .description('optimize images')
+  .action((options) => {
+    if (options.watch) {
+      image.optimize_images(true);
+    } else {
+      image.optimize_images();
+    }
+  });
+
+
+
+
+// zip
 program
   .command('zip')
   .description('compress theme into a zip file without node_modules and source files')
   .action(() => {
-    console.log('zipping')
+    // console.log('zipping')
     archiver.zip_theme();
   });
 

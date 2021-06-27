@@ -5,12 +5,12 @@
   "main": "src/js/global.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "npm-run-all --parallel watch:vite watch:images",
+    "watch": "npm-run-all --parallel watch:vite watch:images --silent",
     "watch:vite": "cd > assets/watch && vite",
-    "watch:images": "node ./wordvite/image.config.js --watch",
-    "prod": "npm run prod:vite && npm run prod:images",
+    "watch:image": "wordvite images --watch",
+    "prod": "npm run prod:vite && wordvite images",
     "prod:vite": "node ./wordvite/clean_assets.js && vite build",
-    "prod:images": "node ./wordvite/image.config.js",
+    "prod:image": "wordvite images",
     "preview": "vite preview",
     "zip": "wordvite zip"
   },
@@ -27,11 +27,9 @@
   "devDependencies": {
     "@vitejs/plugin-legacy": "^1.4.2",
     "chalk": "^4.1.1",
-    "chokidar": "^3.5.2",
     "npm-run-all": "^4.1.5",
     "postcss-nested": "^5.0.5",
     "postcss-url": "^10.1.3",
-    "sharp": "^0.28.3",
     "vite": "^2.3.8",
     "wordvite": "file:..\\packages\\wordvite"
   },
