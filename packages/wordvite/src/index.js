@@ -1,8 +1,7 @@
 const fs = require('fs');
 const { resolve } = require('path');
-
+const WV_CONFIG = require(process.cwd() + '/wordvite.config.js')
 import { removeStringExtension } from './helper';
-
 
 
 /**
@@ -21,9 +20,18 @@ function getScriptFiles() {
 
 
 
+/**
+ * 
+ * Get wordpress theme url 
+ */
+function getThemeUrl() {
+  return WV_CONFIG.dev_url + '/wp-content/themes/' + WV_CONFIG.theme_name + '/assets/';
+}
+
+
 
 // module.exports = {
 //   getScriptFiles
 // }
 
-export { getScriptFiles };
+export { getScriptFiles, getThemeUrl };

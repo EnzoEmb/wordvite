@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.getScriptFiles = getScriptFiles;
+exports.getThemeUrl = getThemeUrl;
 
 var _helper = require("./helper");
 
@@ -11,6 +12,8 @@ var fs = require('fs');
 
 var _require = require('path'),
     resolve = _require.resolve;
+
+var WV_CONFIG = require(process.cwd() + '/wordvite.config.js');
 
 /**
  * 
@@ -24,6 +27,15 @@ function getScriptFiles() {
     main_js_files[name_no_extension] = resolve(process.cwd(), 'src/js/' + file);
   });
   return main_js_files;
+}
+/**
+ * 
+ * Get wordpress theme url 
+ */
+
+
+function getThemeUrl() {
+  return WV_CONFIG.dev_url + '/wp-content/themes/' + WV_CONFIG.theme_name + '/assets/';
 } // module.exports = {
 //   getScriptFiles
 // }

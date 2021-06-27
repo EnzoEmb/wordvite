@@ -1,18 +1,14 @@
-// console.log(process.env.NODE_ENV)
+// import { getThemeUrl } from "wordvite";
+var wordvite = require("wordvite");
+
 
 module.exports = {
-  // parser: 'sugarss',
-  // map: false,
   plugins: {
     'postcss-nested': {},
     'postcss-url': {
-        url: (asset) => {
-            // if (asset.url[0] === '/') {
-                // return `/static${asset.url}`;
-            // }
-            // return asset.url;
-            return ( process.env.NODE_ENV == 'development' ? `http://wordvite.test/wp-content/themes/wordvite/assets/${asset.url}` : '../'+asset.url);
-        }
+      url: (asset) => {
+        return (process.env.NODE_ENV == 'development' ? wordvite.getThemeUrl() + asset.url : '../' + asset.url);
+      }
     }
   }
 }
