@@ -2,50 +2,23 @@
 
 const archiver = require('../src/archiver');
 const image = require('../src/image');
+const clean = require('../src/clean');
 const path = process.cwd();
 const program = require('commander');
-// const cp = require('child_process');
-const { spawn, execSync } = require('child_process');
-// const vite = require('vite');
+const { spawn } = require('child_process');
 
 // watch (no arguments)
 if (!process.argv.slice(2).length) {
-  // console.log('WATCHHH')
-  // console.log(vite);
-  // vite.build();
-  // vite();
-  // cp.exec('vite --config my-config.js', function(e, stdout, stderr) {
-  //   console.log(stdout);
-  //   console.log(stderr);
-  //   if (e) throw e;
-  // });
-  // execSync('npm run vite', function(e, stdout, stderr) {
-  //   console.log(stdout);
-  //   console.log(stderr);
-  //   if (e) throw e;
-  // });
-  // var spawna = spawn('npx vite');     
-  // spawna.stdout.on('data', function(msg){         
-  //     console.log(msg.toString())
-  // });
-  // console.log(path);
-  spawn('npx vite', {
+
+  spawn('cd > assets/watch && npx vite', {
     stdio: 'inherit',
     shell: true
   });
 
-
-  // execSync('npm run vite', (err, stdout, stderr) => {
-  //   if (err) {
-  //     // node couldn't execute the command
-  //     return;
-  //   }
-
-  //   // the *entire* stdout and stderr (buffered)
-  //   console.log(`stdout: ${stdout}`);
-  //   console.log(`stderr: ${stderr}`);
-  // });
+  image.optimize_images(true);
 }
+
+
 
 // build
 program
@@ -53,6 +26,17 @@ program
   .description('main build process')
   .action(() => {
     console.log('BUILDDD')
+
+    clean.clean_assets();
+
+    spawn('npx vite build', {
+      stdio: 'inherit',
+      shell: true
+    });
+
+    image.optimize_images(true);
+
+
   });
 
 

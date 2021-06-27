@@ -3,6 +3,8 @@ import legacy from '@vitejs/plugin-legacy';
 import { getScriptFiles } from "wordvite";
 import { resolve } from 'path';
 
+
+
 export default {
   root: 'src',
   base: './',
