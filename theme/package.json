@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "npm-run-all --parallel watch:vite watch:images --silent",
     "watch:vite": "cd > assets/watch && vite",
+    "vites": "vite",
     "watch:image": "wordvite images --watch",
     "prod": "npm run prod:vite && wordvite images",
     "prod:vite": "node ./wordvite/clean_assets.js && vite build",
