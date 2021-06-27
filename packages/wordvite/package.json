@@ -1,6 +1,6 @@
 {
   "name": "wordvite",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Wordvite useful helper script functions",
   "main": "lib/index.js",
   "bin": {
@@ -8,7 +8,6 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wordvite": "node test.js",
     "build": "babel src --out-dir lib",
     "watch": "babel src -w --out-dir lib"
   },
