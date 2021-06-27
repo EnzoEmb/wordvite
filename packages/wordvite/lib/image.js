@@ -22,6 +22,7 @@ function optimize_images() {
   var OUTPUT_FOLDER = './assets/img/';
 
   if (IS_WATCH) {
+    console.log(chalk.cyan('  watching images for optimization...'));
     chokidar.watch(SRC_FOLDER).on('add', function (event, path) {
       optimizeImage(event);
     });

@@ -22,6 +22,9 @@ function optimize_images(IS_WATCH = false) {
 
 
   if (IS_WATCH) {
+    console.log(chalk.cyan('  watching images for optimization...'))
+
+
     chokidar.watch(SRC_FOLDER).on('add', (event, path) => {
       optimizeImage(event);
     });
