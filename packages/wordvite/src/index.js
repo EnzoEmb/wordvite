@@ -3,6 +3,8 @@ const { resolve } = require('path');
 
 import { removeStringExtension } from './helper';
 
+
+
 /**
  * 
  * Get js files from source folder to add to vite config folder
@@ -23,6 +25,7 @@ function getScriptFiles() {
 
   return main_js_files;
 }
+
 
 
 

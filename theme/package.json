@@ -12,8 +12,7 @@
     "prod:vite": "node ./wordvite/clean_assets.js && vite build",
     "prod:images": "node ./wordvite/image.config.js",
     "preview": "vite preview",
-    "zip": "node ./wordvite/archiver.config.js",
-    "wordvite:zip": "node wordvite"
+    "zip": "wordvite zip"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,6 @@
   "homepage": "https://github.com/EnzoEmb/wordvite#readme",
   "devDependencies": {
     "@vitejs/plugin-legacy": "^1.4.2",
-    "archiver": "^5.3.0",
     "chalk": "^4.1.1",
     "chokidar": "^3.5.2",
     "npm-run-all": "^4.1.5",
