@@ -1,9 +1,10 @@
 
 <p align="center">
-  <img alt="wordvite" src="https://raw.githubusercontent.com/EnzoEmb/wordvite/master/src/img/logo.png" style="width: 100%;">
+  <img alt="wordvite" src="https://raw.githubusercontent.com/EnzoEmb/wordvite/next/.github/github-badge.png" style="width: 100%;">
+</p>
 
 <p align="center">
-Wordpress Starter Theme using Vite as bundler
+  Wordpress Starter Theme using Vite as bundler
 </p>
 
 
